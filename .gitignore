@@ -1,0 +1,11 @@
+# ignore build harness
+*build-harness
+
+# ignore vendored packages
+vendor/*
+
+# ignore compiled main
+terraform-provider-mailgunv3
+
+# ignore dist directory
+dist
