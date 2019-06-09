@@ -164,7 +164,7 @@ func resourceMailgunDomainDelete(d *schema.ResourceData, meta interface{}) error
 		if err == nil {
 			log.Printf("[INFO] Retrying until domain disappears...")
 			return resource.RetryableError(
-				fmt.Errorf("Domain seems to still exist; will check again."))
+				fmt.Errorf("domain seems to still exist; will check again"))
 		}
 		log.Printf("[INFO] Got error looking for domain, seems gone: %s", err)
 		return nil
