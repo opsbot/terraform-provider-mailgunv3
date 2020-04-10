@@ -120,8 +120,9 @@ func resourceMailgunDomainCreate(d *schema.ResourceData, meta interface{}) error
 
 	ctx := context.Background()
 
-	_, err := client.CreateDomain(ctx, name, smtpPassword, &mailgun.CreateDomainOptions{
+	_, err := client.CreateDomain(ctx, name, &mailgun.CreateDomainOptions{
 		SpamAction: mailgun.SpamAction(spamAction),
+		Password:   smtpPassword,
 		Wildcard:   wildcard,
 	})
 
@@ -164,7 +165,7 @@ func resourceMailgunDomainDelete(d *schema.ResourceData, meta interface{}) error
 		if err == nil {
 			log.Printf("[INFO] Retrying until domain disappears...")
 			return resource.RetryableError(
-				fmt.Errorf("Domain seems to still exist; will check again."))
+				fmt.Errorf("domain seems to still exist; will check again"))
 		}
 		log.Printf("[INFO] Got error looking for domain, seems gone: %s", err)
 		return nil
